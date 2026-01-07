@@ -29,9 +29,7 @@ export default function MorePosts({ userId }) {
                 <Link key={p._id} to={`/post/${p._id}`}>
                     <div className="relative">
                         <img
-                            src={`${import.meta.env.VITE_SERVER_URL}/${
-                                p.image
-                            }`}
+                            src={p.image}
                             alt="Grid image"
                             className="w-full grid-image"
                         />

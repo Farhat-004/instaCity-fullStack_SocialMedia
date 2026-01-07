@@ -23,17 +23,20 @@ export default function PostHeader({ post }) {
                 `${import.meta.env.VITE_SERVER_BASE_URL}/posts/${postsId}`
             );
             if (response.status == 200) {
-                toast.success("Post deleted successfully", {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
+                toast.success(
+                    "Post deleted successfully. Refresh the page to see updated posts.",
+                    {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    }
+                );
                 showOptions(false);
             }
         } catch (error) {

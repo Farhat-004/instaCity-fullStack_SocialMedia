@@ -21,6 +21,8 @@ export default function PostDetails() {
     });
     useEffect(() => {
         if (post?._id) {
+            console.log(post?.author);
+
             setActions({
                 likeCountSate: post?.likesCount,
                 commentsCountSate: post?.commentsCount,
@@ -77,15 +79,15 @@ export default function PostDetails() {
                     </div>
                 </div>
 
-                {/* <!-- More Posts Section --> */}
+                {/* <!-- all Posts Section --> */}
                 <div className="mb-8 mx-auto max-w-5xl">
                     <h2 className="text-sm text-gray-500 font-normal mb-4">
-                        More posts from{" "}
+                        All posts from{"  "}
                         <span className="font-semibold text-black">
-                            {post?.user?.name}
+                            {post?.author?.name}
                         </span>
                     </h2>
-                    <MorePosts post={post} userId={post?.user?._id} />
+                    <MorePosts userId={post?.author?._id} />
                 </div>
             </div>
         </PostContext>

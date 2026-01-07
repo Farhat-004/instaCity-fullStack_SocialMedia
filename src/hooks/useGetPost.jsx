@@ -6,8 +6,6 @@ export default function useGetPost(id) {
 
     const fetchPost = async () => {
         try {
-            console.log(id);
-
             const response = await axios.get(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/posts/${id}`
             );
