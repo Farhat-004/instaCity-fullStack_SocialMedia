@@ -1,6 +1,6 @@
-# PhotoBooth Frontend Project (React)
+# PhotoBooth Full_Stack Project (React)
 
-PhotoBooth is a **React-based social media web application** built as part of an assignment.  
+PhotoBooth is a **React-based social media web application**.  
 It converts existing static HTML templates (`login.html`, `register.html`, `profile.html`, etc.) into fully dynamic, functional pages with **JWT Authentication**, **REST API integration**, and **stateful UI interactions** — closely resembling a real-world social platform (Instagram).
 
 ---
@@ -137,12 +137,17 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 | Category                        | Technology                                          |
 | ------------------------------- | --------------------------------------------------- |
 | **Frontend Framework**          | React                                               |
+| **Backend Framework**           | Express                                             |
 | **Routing**                     | React Router                                        |
 | **Authentication**              | JWT (JSON Web Token)                                |
 | **API Calls**                   | Axios                                               |
 | **State Management**            | React Hooks (`useState`, `useEffect`, `useContext`) |
+| **Data Base**                   | MongoDB                                             |
+| **Data Base library**           | Mongoose                                            |
+| **Cloud Storage**               | Cloudinary                                          |
 | **Styling**                     | Custom CSS / Tailwind                               |
 | **Validation**                  | Custom input validation logic                       |
+| **Version Control**             | Git                                                 |
 | **Popup & Toasts**              | React-Toastify                                      |
 | **Password Strength Indicator** | check-password-strength                             |
 
