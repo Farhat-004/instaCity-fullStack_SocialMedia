@@ -1,13 +1,13 @@
-# 📱 PhotoBooth Frontend Project (React)
+# PhotoBooth Frontend Project (React)
 
 PhotoBooth is a **React-based social media web application** built as part of an assignment.  
 It converts existing static HTML templates (`login.html`, `register.html`, `profile.html`, etc.) into fully dynamic, functional pages with **JWT Authentication**, **REST API integration**, and **stateful UI interactions** — closely resembling a real-world social platform (Instagram).
 
 ---
 
-## 🚀 Features Overview
+## Features Overview
 
-### 🔐 Authentication
+### Authentication
 
 -   Users can **register** via `/register` and **log in** via `/login`.
 -   Authentication is handled using **JWT (JSON Web Token)**.
@@ -15,7 +15,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### 🏠 Home Page (`/`)
+### Home Page (`/`)
 
 -   Displays all user posts.
 -   Implements **Infinite Scrolling** — loads 10 posts per API page as the user scrolls down.
@@ -30,7 +30,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### ❤️ Post Interactions
+### Post Interactions
 
 -   Authenticated users can:
     -   **Like (Love React)** posts
@@ -41,7 +41,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### 📝 Post Details Page (`/posts/:id`)
+### Post Details Page (`/posts/:id`)
 
 -   Displays the full post, all comments, and like information.
 -   Users can:
@@ -51,7 +51,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### 👤 Profile System
+### Profile System
 
 -   Clicking any username navigates to that user’s **Profile Page**.
 -   Profile page renders:
@@ -64,20 +64,20 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### ✏️ Edit Profile Page
+### Edit Profile Page
 
 -   Allows the user to:
     -   Update profile picture
     -   Edit website, bio, gender, and password
 -   **Password Strength Indicator**:
-    -   Weak → 🔴 Red
-    -   Fair → 🟠 Orange
-    -   Medium → 🟡 Yellow
-    -   Strong → 🟢 Green
+    -   Weak → Red
+    -   Fair → Orange
+    -   Medium → Yellow
+    -   Strong → Green
 
 ---
 
-### 🖼️ Create Post Page
+### Create Post Page
 
 -   Accessible via the **Create** button in the sidebar.
 -   Users can upload an image and write a caption.
@@ -86,7 +86,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### 🔔 Notification Page
+### Notification Page
 
 -   Fetches notifications from the API (via GET requests).
 -   Displays notifications for:
@@ -97,20 +97,20 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-### 🧭 Navigation System
+### Navigation System
 
 -   A **Side Navigation Bar** is visible on all pages except **Login** and **Register**.
 -   Menu items:
-    -   🏠 Home
-    -   🔔 Notifications
-    -   ➕ Create Post
-    -   👤 Profile
+    -   Home
+    -   Notifications
+    -   Create Post
+    -   Profile
 -   The active route is always highlighted.
 -   Navigation is **persistent** and **shared across the app**.
 
 ---
 
-## ⚙️ Core Functionalities
+## Core Functionalities
 
 -   **JWT-based Authentication** for login and registration.
 -   **REST API Integration** for all CRUD operations.
@@ -124,7 +124,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-## 🧠 Validation & Error Handling
+## Validation & Error Handling
 
 -   Every form includes **client-side validation**.
 -   Uses **custom loading indicators** and **error messages**.
@@ -132,7 +132,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-## 🧩 Tech Stack
+## Tech Stack
 
 | Category                        | Technology                                          |
 | ------------------------------- | --------------------------------------------------- |
@@ -148,7 +148,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-## 🧪 Key Implementation Details
+## Key Implementation Details
 
 -   Smooth **Infinite Scroll** using scroll event listener and page state.
 -   **Show More / Show Less** logic for captions.
@@ -159,7 +159,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-## 🧭 Routing Structure
+## Routing Structure
 
 | Route                | Description              |
 | -------------------- | ------------------------ |
@@ -174,7 +174,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-## 🧰 Future Improvements
+## Future Improvements
 
 -   Real-time notification system using **Socket.io**
 -   Dark mode support
@@ -186,21 +186,21 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
-<!-- ## 📸 Screens (if applicable)
+<!-- ##  Screens (if applicable)
 
 > _(Add screenshots or GIFs here to show your app UI)_ -->
 
 ---
 
-## 🧑‍💻 Author
+## Author
 
 **Developed by:** Farhatul Hassan  
-**Project Type:** React Frontend Assignment (Instagram clone)
-**Focus Areas:** Authentication, State Management, UI Logic, API Integration
+**Project Type:** React Full-Stack (MERN) Application
+**Focus Areas:** Authentication, State Management, UI Logic, API Integration, Backend perfection
 
 ---
 
-## 📝 License
+## License
 
-This project is created for **educational purposes** as part of a frontend assignment.  
-All API routes and HTML templates were provided by the course instructors.
+This project is created for **educational purposes** as part of a frontend assignment. Later it was updated to Full-Stack project by developing a new backend.
+All API routes and HTML templates are created by own following another backend.
