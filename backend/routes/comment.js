@@ -5,13 +5,13 @@ import "dotenv/config";
 import { User } from "../models/userModel.js";
 import { auth } from "../middlewares/index.js";
 
-const commentRoute = express.Router();
+const commentRouter = express.Router();
 
 // delete comment
-commentRoute.delete("/:postId/comment/:commentId", auth, async (req, res) => {
+commentRouter.delete("/:postId/comment/:commentId", auth, async (req, res) => {
     try {
-        const comment = await Comment.findByIdAndDelete(req.params.commentId);
-        const post = await Post.findByIdAndUpdate(
+        await Comment.findByIdAndDelete(req.params.commentId);
+        await Post.findByIdAndUpdate(
             req.params.postId,
             {
                 $pull: {
@@ -30,7 +30,7 @@ commentRoute.delete("/:postId/comment/:commentId", auth, async (req, res) => {
 
 //add comment
 
-commentRoute.post("/:postId/comment", auth, async (req, res) => {
+commentRouter.post("/:postId/comment", auth, async (req, res) => {
     const postId = req.params.postId;
     console.log("postId from comment api :", postId);
 
@@ -40,7 +40,7 @@ commentRoute.post("/:postId/comment", auth, async (req, res) => {
             comment: req.body.text,
             likesCount: 0,
         });
-        const post = await Post.findByIdAndUpdate(
+        await Post.findByIdAndUpdate(
             postId,
             {
                 $push: {
@@ -61,9 +61,9 @@ commentRoute.post("/:postId/comment", auth, async (req, res) => {
     }
 });
 //edit comment
-commentRoute.patch("/comment/:commentId", auth, async (req, res) => {
+commentRouter.patch("/comment/:commentId", auth, async (req, res) => {
     try {
-        const newComment = await Comment.findByIdAndUpdate(
+        await Comment.findByIdAndUpdate(
             req.params.commentId,
             {
                 comment: req.body.text,
@@ -82,4 +82,4 @@ commentRoute.patch("/comment/:commentId", auth, async (req, res) => {
 // commentRoute.post("/:postId/comment",auth,async(req,res)=>{});
 // commentRoute.post("/:postId/comment",auth,async(req,res)=>{});
 // commentRoute.post("/:postId/comment",auth,async(req,res)=>{});
-export default commentRoute;
+export default commentRouter;

@@ -42,7 +42,7 @@ route.patch("/me", auth, async (req, res) => {
 //change or upload avatar
 route.patch("/me/avatar", auth, async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
             req.id,
             {
                 avatar: req.body.avatar,

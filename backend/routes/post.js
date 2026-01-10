@@ -6,9 +6,9 @@ import { auth } from "../middlewares/index.js";
 // import multer from "multer";
 
 // const upload = multer({ storage: multer.memoryStorage() });
-const postRoute = express.Router();
+const postRouter = express.Router();
 //create new post
-postRoute.post("/", auth, async (req, res) => {
+postRouter.post("/", auth, async (req, res) => {
     const user = await User.findById(req.id).select({ token: 0 });
     console.log("caption:", req.body.caption);
 
@@ -39,15 +39,15 @@ postRoute.post("/", auth, async (req, res) => {
 });
 
 //toggle like
-postRoute.post("/:postId/like", auth, async (req, res) => {
+postRouter.post("/:postId/like", auth, async (req, res) => {
     const postId = req.params.postId;
     console.log("postId from like api :", postId);
     let post = await Post.findById(postId);
     const isLiked = post.likes.includes(req.id);
-    let updatedPostLike;
+
     try {
         if (isLiked) {
-            updatedPostLike = await Post.findByIdAndUpdate(
+            await Post.findByIdAndUpdate(
                 postId,
                 {
                     $pull: { likes: req.id },
@@ -58,7 +58,7 @@ postRoute.post("/:postId/like", auth, async (req, res) => {
 
             return res.status(200).json({ likeState: false });
         } else {
-            updatedPostLike = await Post.findByIdAndUpdate(
+            await Post.findByIdAndUpdate(
                 postId,
                 {
                     $push: { likes: req.id },
@@ -78,7 +78,7 @@ postRoute.post("/:postId/like", auth, async (req, res) => {
 });
 
 //get all posts (Propagated)
-postRoute.get("/", async (req, res) => {
+postRouter.get("/", async (req, res) => {
     try {
         const page = req.query.page || 1;
         const limit = req.query.limit || 10;
@@ -97,7 +97,7 @@ postRoute.get("/", async (req, res) => {
 });
 
 //get user and users posts
-postRoute.get("/user/:userId", async (req, res) => {
+postRouter.get("/user/:userId", async (req, res) => {
     // console.log("userId", req.params.userId);
 
     try {
@@ -112,7 +112,7 @@ postRoute.get("/user/:userId", async (req, res) => {
 });
 
 //single post with details
-postRoute.get("/:postId", async (req, res) => {
+postRouter.get("/:postId", async (req, res) => {
     try {
         const post = await Post.findById(req.params.postId)
             .populate({ path: "likes", select: "_id name avatar" })
@@ -128,7 +128,7 @@ postRoute.get("/:postId", async (req, res) => {
     }
 });
 //edit post (only if owner)
-postRoute.patch("/:postId", auth, async (req, res) => {
+postRouter.patch("/:postId", auth, async (req, res) => {
     console.log(`"caption":${req.body.caption},
                 "image": ${req.body.image},`);
 
@@ -149,7 +149,7 @@ postRoute.patch("/:postId", auth, async (req, res) => {
     }
 });
 //delete own post
-postRoute.delete("/:postId", auth, async (req, res) => {
+postRouter.delete("/:postId", auth, async (req, res) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.postId);
         res.status(200).json(post);
@@ -158,4 +158,4 @@ postRoute.delete("/:postId", auth, async (req, res) => {
     }
 });
 
-export default postRoute;
+export default postRouter;

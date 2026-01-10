@@ -1,10 +1,10 @@
 import express from "express";
-import userRoute from "./routes/user.js";
+import userRouter from "./routes/user.js";
 import mongoose from "mongoose";
-import authRoute from "./routes/auth.js";
-import postRoute from "./routes/post.js";
+import authRouter from "./routes/auth.js";
+import postRouter from "./routes/post.js";
 import cors from "cors";
-import commentRoute from "./routes/comment.js";
+import commentRouter from "./routes/comment.js";
 const app = express();
 const PORT = 4000;
 
@@ -22,15 +22,15 @@ db.once("open", () => {
 app.use(express.json());
 app.use(
     cors({
-        origin: "http://localhost:5173", // Match your frontend's address
+        origin: process.env.FRONTEND_URL, //frontend's address
     })
 );
 
 //routers
-app.use("/users", userRoute);
-app.use("/auth", authRoute);
-app.use("/posts", postRoute);
-app.use("/posts", commentRoute);
+app.use("/users", userRouter);
+app.use("/auth", authRouter);
+app.use("/posts", postRouter);
+app.use("/posts", commentRouter);
 
 app.listen(PORT, () => {
     console.log("Server is running at 4000 port");
