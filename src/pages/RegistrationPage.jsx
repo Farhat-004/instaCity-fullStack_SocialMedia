@@ -16,8 +16,6 @@ export default function RegistrationPage() {
     const navigate = useNavigate();
 
     const submitLogin = async (formData) => {
-        console.log(formData);
-
         // if(formData.pass) ;
         try {
             const response = await axios.post(
@@ -54,7 +52,6 @@ export default function RegistrationPage() {
                 type: "manual",
                 message: "This email is already registered .",
             });
-            console.log(error?.root.message);
         }
     };
     return (

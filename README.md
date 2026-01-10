@@ -181,7 +181,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ## Future Improvements
 
--   Real-time notification system using **Socket.io**
+-   Real-time notification and chat system using **Socket.io**
 -   Dark mode support
 -   Image lazy-loading for performance
 -   Comment threading and mentions
@@ -200,12 +200,12 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 ## Author
 
 **Developed by:** Farhatul Hassan  
-**Project Type:** React Full-Stack (MERN) Application
+**Project Type:** Full-Stack (MERN) Application
 **Focus Areas:** Authentication, State Management, UI Logic, API Integration, Backend perfection
 
 ---
 
 ## License
 
-This project is created for **educational purposes** as part of a frontend assignment. Later it was updated to Full-Stack project by developing a new backend.
+This project is created for **educational purposes** as part of a frontend assignment. Later it was updated to Full-Stack project by developing a new backend with Express and MongoDB.
 All API routes and HTML templates are created by own following another backend.

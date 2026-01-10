@@ -84,46 +84,7 @@ export default function CreatePost() {
             });
         }
     };
-    // const handlePost = async () => {
-    //     try {
-    //         console.log("caption :", caption);
 
-    //         const response = await api.post(
-    //             `${import.meta.env.VITE_SERVER_BASE_URL}/posts/`,
-    //             {
-    //                 image: "ImageURL",
-    //                 caption: "fake caption",
-    //             }
-    //         );
-    //         if (response.status === 201) {
-    //             setImageUrl("");
-    //             setCaption("");
-    //             toast.success("Your post has been shared", {
-    //                 position: "top-right",
-    //                 autoClose: 5000,
-    //                 hideProgressBar: false,
-    //                 closeOnClick: false,
-    //                 pauseOnHover: true,
-    //                 draggable: true,
-    //                 progress: undefined,
-    //                 theme: "colored",
-    //                 transition: Bounce,
-    //             });
-    //         }
-    //     } catch (error) {
-    //         toast.error(`${error?.response?.data?.message}. Failed to post.`, {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             hideProgressBar: false,
-    //             closeOnClick: false,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "light",
-    //             transition: Bounce,
-    //         });
-    //     }
-    // };
     return (
         <div>
             {user?._id ? (

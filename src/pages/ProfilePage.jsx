@@ -9,7 +9,6 @@ export default function ProfilePage() {
     const params = useParams();
     const [userData, setUserData] = useState(null);
     const { user, loading, postsCount } = useGetUser(params?.userId);
-    console.log(user);
 
     useEffect(() => {
         if (params.userId && user) {

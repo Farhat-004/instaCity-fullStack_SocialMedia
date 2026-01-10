@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Bounce, toast } from "react-toastify";
 
 export default function useGetPost(id) {
     const [post, setPost] = useState(null);
@@ -12,8 +13,18 @@ export default function useGetPost(id) {
             if (response?.status === 200) {
                 setPost(response.data);
             }
-        } catch (err) {
-            console.log(err.response?.data?.message || err.message);
+        } catch (error) {
+            toast.error(error?.response?.data?.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 

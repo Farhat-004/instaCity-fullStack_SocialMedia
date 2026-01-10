@@ -18,13 +18,10 @@ export default function LoginPage() {
 
     const submitLogin = async (formData) => {
         try {
-            console.log(formData);
-
             const response = await axios.post(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/auth/login`,
                 formData
             );
-            console.log("response", response);
 
             if (response.status === 200) {
                 const { accessToken, refreshToken, user } = response.data;
@@ -47,8 +44,6 @@ export default function LoginPage() {
                 navigate("/");
             }
         } catch (error) {
-            console.log(error.message);
-
             setError("root", {
                 type: "manual",
                 message: "Check your email password and try again",

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Bounce, toast } from "react-toastify";
 
 export default function useGetUser(id) {
     const [user, setUser] = useState(null);
@@ -20,8 +21,18 @@ export default function useGetUser(id) {
                 setPosts(posts);
                 setPostCount(posts.length);
             }
-        } catch (err) {
-            console.log(err.response?.data?.message || err.message);
+        } catch (error) {
+            toast.error(error?.response?.data?.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         } finally {
             setLoading(false);
         }

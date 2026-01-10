@@ -36,7 +36,17 @@ export default function AddComment({ postId }) {
                     }));
                 }
             } catch (error) {
-                console.log(error.message);
+                toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             }
         } else {
             toast.warn("You need to login to comment", {

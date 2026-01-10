@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 export default function MorePosts({ userId }) {
     const [usersPosts, setUsersPosts] = useState([]);
@@ -15,7 +16,17 @@ export default function MorePosts({ userId }) {
                 setUsersPosts(posts);
             }
         } catch (err) {
-            console.log(err.response?.data?.message || err.message);
+            toast.error(err?.response?.data?.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 

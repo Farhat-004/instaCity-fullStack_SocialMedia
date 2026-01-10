@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import useAvatar from "../../hooks/useAvatar";
-import useGetUser from "../../hooks/useGetUser";
+// import useAvatar from "../../hooks/useAvatar";
+// import useGetUser from "../../hooks/useGetUser";
 import { getDateDifferenceFromNow } from "../../utils/getTime";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
@@ -37,8 +37,6 @@ export default function Comment({ comment, postId }) {
                 });
             }
         } catch (error) {
-            console.log(error?.response?.data?.message);
-
             toast.error(
                 `${error?.response?.data?.message}. Failed to delete comment.`,
                 {

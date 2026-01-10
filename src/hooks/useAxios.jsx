@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { api } from "../api/api";
 import useAuth from "./useAuth";
 import axios from "axios";
+import { Bounce, toast } from "react-toastify";
 export default function useAxios() {
     const { auth, setAuth } = useAuth();
-    // console.log(auth);
 
     useEffect(() => {
         const requestInterceptor = api.interceptors.request.use(
@@ -39,16 +39,24 @@ export default function useAxios() {
                             { refreshToken } // body
                         );
                         const { accessToken } = response.data;
-                        console.log(response.data);
 
-                        console.log(`New Token: ${accessToken}`);
                         setAuth({ ...auth, accessToken });
 
                         // Retry the original request with the new token
                         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
                         return axios(originalRequest);
-                    } catch (err) {
-                        console.log(err.response?.data?.message);
+                    } catch (error) {
+                        toast.error(error?.response?.data?.message, {
+                            position: "top-center",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            transition: Bounce,
+                        });
                     }
                 }
 

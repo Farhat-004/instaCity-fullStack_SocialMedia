@@ -44,7 +44,17 @@ export default function PostActions({
                     }));
                 }
             } catch (error) {
-                console.log(error?.message);
+                toast.error(error?.response?.data?.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             }
         } else {
             toast.warn("You need to login to like a post", {
