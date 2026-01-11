@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema({
     address: String,
     mobileNumber: Number,
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    notifications: [
+        {
+            type: String,
+            postId: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
+        },
+    ],
     token: {
         accessToken: String,
         refreshToken: String,
