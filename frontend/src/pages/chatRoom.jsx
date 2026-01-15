@@ -8,27 +8,6 @@ import axios from "axios";
 const socket = io(import.meta.env.VITE_BACKEND_URL);
 console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
 
-// const Messages = [
-//     {
-//         id: 1,
-//         sender: "me",
-//         text: "Hi! I saw your message request.",
-//         time: "10:30 AM",
-//     },
-//     {
-//         id: 2,
-//         sender: "other",
-//         text: "Hello! Yes, wanted to talk about the project.",
-//         time: "10:31 AM",
-//     },
-//     {
-//         id: 3,
-//         sender: "me",
-//         text: "Sure, tell me more.",
-//         time: "10:32 AM",
-//     },
-// ];
-
 export default function ChatRoomPage() {
     const params = useParams();
     const { auth } = useAuth();

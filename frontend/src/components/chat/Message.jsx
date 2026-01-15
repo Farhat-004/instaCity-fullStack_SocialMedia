@@ -6,7 +6,7 @@ export default function SingleMessage({ msg }) {
     return (
         <div
             className={`flex ${
-                msg.sender === auth?.user?.name
+                msg.senderId === auth?.user?._id
                     ? "justify-end"
                     : "justify-start"
             }`}
