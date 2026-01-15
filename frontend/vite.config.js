@@ -9,12 +9,12 @@ export default defineConfig(({ mode }) => {
         plugins: [tailwindcss(), react()],
         server: {
             proxy: {
-                // // Redirect all requests starting with '/api' to your Express server
-                // "/api": {
-                //     target: env.BACKEND_URL,
-                //     changeOrigin: true, // Needed for virtual hosted sites
-                //     // rewrite: (path) => path.replace(/^\/api/, ""), // Optional: remove the /api prefix when forwarding to Express
-                // },
+                // Redirect all requests starting with '/api' to your Express server
+                "/api": {
+                    target: env.BACKEND_URL,
+                    changeOrigin: true, // Needed for virtual hosted sites
+                    rewrite: (path) => path.replace(/^\/api/, ""), // Optional: remove the /api prefix when forwarding to Express
+                },
             },
         },
     };

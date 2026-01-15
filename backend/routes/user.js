@@ -4,10 +4,46 @@ import { User } from "../models/userModel.js";
 import { auth } from "../middlewares/index.js";
 
 const route = express.Router();
-//get user profile
+//get all users
+route.get("/", async (req, res) => {
+    try {
+        const users = await User.find().select({
+            posts: 0,
+            token: 0,
+            password: 0,
+            friends: 0,
+            notifications: 0,
+            updatedAt: 0,
+            createdAt: 0,
+        });
+        return res.status(200).json(users);
+    } catch (error) {
+        console.log(error.message);
+
+        return res.status(500).json({ message: error.message });
+    }
+});
+//get current user's profile
 route.get("/me", auth, async (req, res) => {
     try {
         const user = await User.findById(req.id).select({ posts: 0, token: 0 });
+        return res.status(200).json(user);
+    } catch (error) {
+        console.log(error.message);
+
+        return res.status(500).json({ message: error.message });
+    }
+});
+//get user profile by id
+route.get("/:userId", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId).select({
+            posts: 0,
+            token: 0,
+            friends: 0,
+            notifications: 0,
+            password: 0,
+        });
         return res.status(200).json(user);
     } catch (error) {
         console.log(error.message);
@@ -39,6 +75,67 @@ route.patch("/me", auth, async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 });
+//add a new friend
+route.patch("/me/friends", auth, async (req, res) => {
+    try {
+        //adds in sender db
+        const sender = await User.findByIdAndUpdate(
+            req.id,
+            {
+                $push: {
+                    friends: {
+                        friend: req.body.userId,
+                        roomId: req.body.roomId,
+                    },
+                },
+            },
+            { new: true }
+        ).select({
+            posts: 0,
+            token: 0,
+            password: 0,
+        });
+        const receiver = await User.findByIdAndUpdate(
+            req.body.userId,
+            {
+                $push: {
+                    friends: {
+                        friend: req.id,
+                        roomId: req.body.roomId,
+                    },
+                },
+            },
+            { new: true }
+        ).select({
+            posts: 0,
+            token: 0,
+            password: 0,
+        });
+        return res.status(200).json({ sender, receiver });
+    } catch (error) {
+        console.log(error.message);
+
+        return res.status(500).json({ message: error.message });
+    }
+});
+//get user's friendList
+route.get("/me/friends", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.id)
+            .select({
+                posts: 0,
+                token: 0,
+                password: 0,
+            })
+            .populate({ path: "friends.friend", select: "name avatar _id" });
+        return res.status(200).json(user.friends);
+    } catch (error) {
+        console.log(error.message);
+
+        return res.status(500).json({ message: error.message });
+    }
+});
+
 //change or upload avatar
 route.patch("/me/avatar", auth, async (req, res) => {
     try {

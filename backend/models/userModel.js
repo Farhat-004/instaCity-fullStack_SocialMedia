@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema({
             postId: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
         },
     ],
+    friends: [
+        {
+            roomId: String,
+            friend: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        },
+    ],
     token: {
         accessToken: String,
         refreshToken: String,

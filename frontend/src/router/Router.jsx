@@ -10,6 +10,8 @@ import EditProfilePage from "../pages/EditProfilePage";
 import PostDetails from "../pages/PostDetails";
 import CreatePost from "../pages/CreatePost";
 import EditPost from "../pages/EditPost";
+import ChatPage from "../pages/chatpage";
+import ChatRoomPage from "../pages/chatRoom";
 export const Router = createBrowserRouter([
     {
         element: <App />,
@@ -37,6 +39,14 @@ export const Router = createBrowserRouter([
             {
                 path: "/edit-profile",
                 element: <EditProfilePage />,
+            },
+            {
+                path: "/chats",
+                element: <ChatPage />,
+            },
+            {
+                path: "/chat-room/:roomId",
+                element: <ChatRoomPage />,
             },
             {
                 path: "/create-post",

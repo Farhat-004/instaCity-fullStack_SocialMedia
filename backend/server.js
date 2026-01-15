@@ -13,22 +13,24 @@ const server = http.createServer(app);
 //socket.io
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: process.env.FRONTEND_URL,
         methods: ["GET", "POST"],
     },
 });
-
+console.log("Socket.IO server initialized");
 io.on("connection", (socket) => {
     console.log("User connected:", socket.id);
 
     socket.on("join_room", (roomId) => {
-        console.log(`User ${socket.id} joined the room ${room}`);
+        socket.join(roomId);
+
+        console.log(`User ${socket.id} joined the room ${roomId}`);
     });
     socket.on("send_message", (data) => {
         socket.to(data.roomId).emit("receive_message", data);
     });
     socket.on("typing", ({ username, roomId }) => {
-        socket.to(room).emit("user_typing", username);
+        socket.to(roomId).emit("user_typing", username);
     });
 
     socket.on("disconnect", () => {
