@@ -2,6 +2,7 @@ import "dotenv/config";
 import jwt from "jsonwebtoken";
 
 export const auth = (req, res, next) => {
+    res.setHeader("Cache-Control", "no-store");
     const authHeader = req.headers["authorization"];
 
     if (!authHeader?.startsWith("Bearer ")) {

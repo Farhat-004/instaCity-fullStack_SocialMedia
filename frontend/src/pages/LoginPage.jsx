@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import Logo from "../assets/logo-2.svg";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -20,7 +19,7 @@ export default function LoginPage() {
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/auth/login`,
-                formData
+                formData,
             );
 
             if (response.status === 200) {
@@ -48,7 +47,7 @@ export default function LoginPage() {
                 type: "manual",
                 message: "Check your email password and try again",
             });
-            toast.error("Check your email password and try again", {
+            toast.error(error.response.data.message, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -64,10 +63,6 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="login-container rounded-md">
-                <div className="flex justify-center mb-8">
-                    <img src={Logo} alt="PhotoBooth" className="h-[51px]" />
-                </div>
-
                 <div className="bg-white p-6 border border-gray-300 mb-3 rounded-md">
                     <form onSubmit={handleSubmit(submitLogin)}>
                         <div className="mb-3">
