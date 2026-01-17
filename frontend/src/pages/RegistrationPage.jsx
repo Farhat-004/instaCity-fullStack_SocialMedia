@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import Logo from "../assets/logo-2.svg";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
@@ -57,9 +56,7 @@ export default function RegistrationPage() {
     return (
         <div className="min-h-screen flex flex-col justify-center py-8 sm:px-6 lg:px-8">
             <div className="signup-container">
-                <div className="flex justify-center mb-4">
-                    <img src={Logo} alt="PhotoBooth" className="h-[51px]" />
-                </div>
+                
 
                 <div className="bg-white p-6 border border-gray-300 mb-3">
                     <h2 className="text-center font-semibold text-gray-500 text-lg mb-4">
