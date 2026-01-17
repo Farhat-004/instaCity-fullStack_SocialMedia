@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import SingleMessage from "../components/chat/message.jsx";
+import SingleMessage from "../components/chat/Message.jsx";
 import { io } from "socket.io-client";
 import { useParams } from "react-router";
 import useAuth from "../hooks/useAuth";
