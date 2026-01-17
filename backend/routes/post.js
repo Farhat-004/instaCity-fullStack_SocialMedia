@@ -9,6 +9,7 @@ import { auth } from "../middlewares/index.js";
 const postRouter = express.Router();
 //create new post
 postRouter.post("/", auth, async (req, res) => {
+    res.set("Cache-Control", "no-store");
     const user = await User.findById(req.id).select({ token: 0 });
     console.log("caption:", req.body.caption);
 
@@ -27,7 +28,7 @@ postRouter.post("/", auth, async (req, res) => {
             {
                 $push: { posts: newPost._id },
             },
-            { new: true }
+            { new: true },
         );
         res.status(201).json({
             post: newPost,
@@ -53,7 +54,7 @@ postRouter.post("/:postId/like", auth, async (req, res) => {
                     $pull: { likes: req.id },
                     $inc: { likesCount: -1 },
                 },
-                { new: true }
+                { new: true },
             );
 
             return res.status(200).json({ likeState: false });
@@ -64,7 +65,7 @@ postRouter.post("/:postId/like", auth, async (req, res) => {
                     $push: { likes: req.id },
                     $inc: { likesCount: 1 },
                 },
-                { new: true }
+                { new: true },
             );
 
             return res.status(200).json({ likeState: true });
@@ -79,6 +80,7 @@ postRouter.post("/:postId/like", auth, async (req, res) => {
 
 //get all posts (Propagated)
 postRouter.get("/", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     try {
         const page = req.query.page || 1;
         const limit = req.query.limit || 10;
@@ -98,6 +100,7 @@ postRouter.get("/", async (req, res) => {
 
 //get user and users posts
 postRouter.get("/user/:userId", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     // console.log("userId", req.params.userId);
 
     try {
@@ -113,6 +116,7 @@ postRouter.get("/user/:userId", async (req, res) => {
 
 //single post with details
 postRouter.get("/:postId", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     try {
         const post = await Post.findById(req.params.postId)
             .populate({ path: "likes", select: "_id name avatar" })
@@ -139,7 +143,7 @@ postRouter.patch("/:postId", auth, async (req, res) => {
                 caption: req.body.caption,
                 image: req.body.image,
             },
-            { new: true }
+            { new: true },
         ).lean();
         res.status(200).json(post);
     } catch (error) {

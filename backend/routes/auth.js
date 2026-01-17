@@ -6,6 +6,7 @@ import { User } from "../models/userModel.js";
 const authRoute = express.Router();
 
 authRoute.post("/signup", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
@@ -23,6 +24,7 @@ authRoute.post("/signup", async (req, res) => {
 });
 
 authRoute.post("/token", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     const refreshToken = req.body.refreshToken;
 
     const isAvailable = await User.findOne({
@@ -42,7 +44,7 @@ authRoute.post("/token", async (req, res) => {
             process.env.AUTH_TOKEN,
             {
                 expiresIn: "2m",
-            }
+            },
         );
         res.status(200).json({
             name: user.name,
@@ -52,6 +54,7 @@ authRoute.post("/token", async (req, res) => {
     });
 });
 authRoute.post("/login", async (req, res) => {
+    res.set("Cache-Control", "no-store");
     const userFound = await User.findOne({
         email: req.body.email,
         password: req.body.password,
@@ -68,11 +71,11 @@ authRoute.post("/login", async (req, res) => {
         process.env.AUTH_TOKEN,
         {
             expiresIn: "20m",
-        }
+        },
     );
     const refreshToken = jwt.sign(
         { name: userFound.name },
-        process.env.REFRESH_TOKEN
+        process.env.REFRESH_TOKEN,
     );
     //adding the tokens in db
     const updatedUser = await User.findOneAndUpdate(
@@ -81,7 +84,7 @@ authRoute.post("/login", async (req, res) => {
             password: req.body.password,
         },
         { token: { accessToken: accessToken, refreshToken: refreshToken } },
-        { new: true, select: { password: 0, __v: 0, token: 0 } }
+        { new: true, select: { password: 0, __v: 0, token: 0 } },
     );
     console.log(200);
 
