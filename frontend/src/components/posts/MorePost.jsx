@@ -16,17 +16,7 @@ export default function MorePosts({ userId }) {
                 setUsersPosts(posts);
             }
         } catch (err) {
-            toast.error(err?.response?.data?.message, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
+            console.error(`from more posts ${err?.response?.data?.message}`);
         }
     };
 

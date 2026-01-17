@@ -61,11 +61,18 @@ export default function PostHeader({ post }) {
                     to={`/profile-page/${post?.author?._id}`}
                     className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center"
                 >
-                    <img
-                        src={post?.author?.avatar}
-                        className="w-full h-full object-cover"
-                        alt="User avatar"
-                    />
+                    {post?.author?.avatar ? (
+                        <img
+                            src={post?.author?.avatar}
+                            className="w-full h-full object-cover"
+                            alt="User avatar"
+                        />
+                    ) : (
+                        <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                            {post?.name.charAt(0) ||
+                                post?.author?.name.charAt(0)}
+                        </div>
+                    )}
                 </Link>
 
                 <div className="ml-2 flex flex-col">

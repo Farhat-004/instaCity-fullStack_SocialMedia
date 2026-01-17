@@ -14,7 +14,7 @@ export default function useGetPost(id) {
                 setPost(response.data);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message, {
+            toast.error(`From useGetPost ${error?.response?.data?.message}`, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

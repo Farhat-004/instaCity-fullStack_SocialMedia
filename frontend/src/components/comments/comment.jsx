@@ -104,11 +104,17 @@ export default function Comment({ comment, postId }) {
         <div className="flex mb-4">
             <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-r  mr-2 ">
                 <div className="w-full h-full rounded-full overflow-hidden bg-white p-[1px] mr-2">
-                    <img
-                        src={comment.author.avatar}
-                        alt={comment?.author?.name}
-                        className="w-full h-full object-cover rounded-full"
-                    />
+                    {comment.author.avatar ? (
+                        <img
+                            src={comment.author.avatar}
+                            alt={comment?.author?.name}
+                            className="w-full h-full object-cover rounded-full"
+                        />
+                    ) : (
+                        <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                            {comment?.author?.name.charAt(0)}
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="flex-1">

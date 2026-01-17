@@ -84,7 +84,7 @@ export default function ChatRoomPage() {
                     />
                 ) : (
                     <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-                        A
+                        {receiver?.name.charAt(0)}
                     </div>
                 )}
                 <div>
@@ -97,7 +97,7 @@ export default function ChatRoomPage() {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-                {messages.map((msg) => (
+                {messages?.map((msg) => (
                     <SingleMessage key={msg.id} msg={msg} />
                 ))}
                 <div ref={cursorRef} />

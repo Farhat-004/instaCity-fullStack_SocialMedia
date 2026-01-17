@@ -18,7 +18,7 @@ export default function Navbar() {
                     alt="PhotoBooth"
                     className="h-6 object-contain border-none"
                 />
-                <h2 className="text-lg">Photo Booth</h2>
+                <h2 className="text-lg">instaCity</h2>
             </Link>
 
             <ul className="space-y-8 flex-1">
@@ -41,7 +41,7 @@ export default function Navbar() {
                     </Link>
                 </li>
 
-                <li>
+                {/* <li>
                     <Link
                         to="./notification"
                         className="flex flex-row items-center gap-2"
@@ -62,26 +62,51 @@ export default function Navbar() {
                         </svg>
                         <span className="text-xs">Notifications</span>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link
                         to="./chats"
                         className="flex flex-row items-center gap-2"
                     >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 stroke-zinc-800"
-                            fill="none"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
+                            className="h-6 w-6 "
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                            />
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></g>
+                            <g id="SVGRepo_iconCarrier">
+                                {" "}
+                                <g clip-path="url(#clip0_15_90)">
+                                    {" "}
+                                    <rect
+                                        width="24"
+                                        height="24"
+                                        fill="white"
+                                    ></rect>{" "}
+                                    <path
+                                        d="M20 12C20 16.4183 16.4183 20 12 20C10.5937 20 9.27223 19.6372 8.12398 19C7.53267 18.6719 4.48731 20.4615 3.99998 20C3.44096 19.4706 5.4583 16.6708 5.07024 16C4.38956 14.8233 3.99999 13.4571 3.99999 12C3.99999 7.58172 7.58171 4 12 4C16.4183 4 20 7.58172 20 12Z"
+                                        stroke="#000000"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_15_90">
+                                        <rect
+                                            width="24"
+                                            height="24"
+                                            fill="white"
+                                        ></rect>
+                                    </clipPath>
+                                </defs>
+                            </g>
                         </svg>
+
                         <span className="text-xs">Chats</span>
                     </Link>
                 </li>
@@ -138,19 +163,22 @@ export default function Navbar() {
                     <Link to={`/profile-page/${user?._id}`}>
                         <div className="flex items-center">
                             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300">
-                                <img
-                                    src={user?.avatar}
-                                    alt="User avatar"
-                                    className="w-full h-full object-cover"
-                                />
+                                {user?.avatar ? (
+                                    <img
+                                        src={user?.avatar}
+                                        alt="User avatar"
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                                        {user?.name.charAt(0)}
+                                    </div>
+                                )}
                             </div>
                             <div className="ml-2">
                                 <span className="font-semibold text-sm">
                                     {user?.name}
                                 </span>
-                                {/* <p className="text-xs text-gray-500  leading-0"> user tag
-                                @farhat-0o4
-                            </p> */}
                             </div>
                         </div>
                     </Link>
@@ -175,7 +203,7 @@ export default function Navbar() {
                 <button
                     onClick={() => navigate("/login")}
                     title="login"
-                    className="text-sm"
+                    className="text-sm text-blue-500 font-semibold"
                 >
                     login
                 </button>

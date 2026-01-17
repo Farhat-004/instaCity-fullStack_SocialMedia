@@ -10,6 +10,7 @@ export default function CreatePost() {
     const pictureBtnRef = useRef(null);
     const [imageUrl, setImageUrl] = useState("");
     const [caption, setCaption] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handlePictureBtn = (e) => {
         e.preventDefault();
@@ -33,7 +34,7 @@ export default function CreatePost() {
 
     const handlePost = async () => {
         const selectedFile = pictureBtnRef.current.files[0];
-
+        setLoading(true);
         const data = new FormData();
         data.append("file", selectedFile);
         data.append("upload_preset", "final-project");
@@ -82,6 +83,8 @@ export default function CreatePost() {
                 theme: "light",
                 transition: Bounce,
             });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -113,6 +116,7 @@ export default function CreatePost() {
                         <button
                             onClick={handlePost}
                             className="text-blue-500 font-semibold"
+                            disabled={loading}
                         >
                             Post
                         </button>

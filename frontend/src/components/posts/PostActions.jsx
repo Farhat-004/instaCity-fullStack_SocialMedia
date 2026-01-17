@@ -16,6 +16,7 @@ export default function PostActions({
     const api = useAxios();
     const params = useParams();
     const [hasLiked, setHasLiked] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (likes && auth?.user?._id) {
@@ -24,6 +25,7 @@ export default function PostActions({
     }, [likes, post, auth?.user?._id]);
 
     const handleLikeBtn = async () => {
+        setLoading(true);
         if (auth?.user) {
             try {
                 const response = await api.post(
@@ -55,6 +57,8 @@ export default function PostActions({
                     theme: "light",
                     transition: Bounce,
                 });
+            } finally {
+                setLoading(false);
             }
         } else {
             toast.warn("You need to login to like a post", {
@@ -86,6 +90,7 @@ export default function PostActions({
                     key={postId}
                     onClick={handleLikeBtn}
                     className="like-button"
+                    disabled={loading}
                 >
                     {hasLiked ? <Liked /> : <Unlike />}
                 </button>

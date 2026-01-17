@@ -40,9 +40,9 @@ export default function ChatPage() {
             setLoading(false);
         }
     };
-    const friendIds = new Set(friends.map((f) => f.friend._id));
+    const friendIds = new Set(friends?.map((f) => f.friend._id));
 
-    const usersNotInFriends = users.filter((u) => !friendIds.has(u._id));
+    const usersNotInFriends = users?.filter((u) => !friendIds?.has(u._id));
 
     useEffect(() => {
         getFriends();
@@ -50,46 +50,68 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <div className="h-screen w-full bg-gray-100 p-4">
-            {loading ? (
-                <h2> Loading page</h2>
+        <>
+            {auth?.user?._id ? (
+                <div className="h-screen w-full bg-gray-100 p-4">
+                    {loading ? (
+                        <h2 className="max-w-4xl mx-auto mb-3 tx">
+                            {" "}
+                            Loading page.....
+                        </h2>
+                    ) : (
+                        <>
+                            {friends.length > 0 && (
+                                <div className="max-w-4xl mx-auto mb-3">
+                                    <h2 className="text-xl font-semibold ">
+                                        Your Friends
+                                    </h2>
+
+                                    <ul className="space-y-3 ">
+                                        {friends.map((user) => (
+                                            <Link
+                                                key={user.friend._id}
+                                                to={`/chat-room/${user.roomId}`}
+                                            >
+                                                <Message
+                                                    user={user?.friend}
+                                                    roomId={user?.roomId}
+                                                    from="friends"
+                                                />
+                                            </Link>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {usersNotInFriends.length > 0 ? (
+                                <div className="max-w-4xl mx-auto">
+                                    <h2 className="text-xl font-semibold ">
+                                        Users
+                                    </h2>
+
+                                    <ul className="space-y-3">
+                                        {usersNotInFriends.map((user) => (
+                                            <Message user={user} from="users" />
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : (
+                                <div className="max-w-4xl mx-auto">
+                                    <h2 className="text-xl font-semibold ">
+                                        There is no users to message
+                                    </h2>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
             ) : (
-                <>
-                    {friends.length > 0 && (
-                        <div className="max-w-4xl mx-auto mb-3">
-                            <h2 className="text-xl font-semibold ">
-                                Your Friends
-                            </h2>
-
-                            <ul className="space-y-3 ">
-                                {friends.map((user) => (
-                                    <Link
-                                        key={user.friend._id}
-                                        to={`/chat-room/${user.roomId}`}
-                                    >
-                                        <Message
-                                            user={user?.friend}
-                                            roomId={user?.roomId}
-                                            from="friends"
-                                        />
-                                    </Link>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    {usersNotInFriends.length > 0 && (
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-xl font-semibold ">Users</h2>
-
-                            <ul className="space-y-3">
-                                {usersNotInFriends.map((user) => (
-                                    <Message user={user} from="users" />
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </>
+                <div className="mt-40">
+                    <h1 className="text-3xl">Login to see your messages</h1>
+                    <Link className="m-40 mt-10 text-blue-950" to="/login">
+                        Click to login
+                    </Link>
+                </div>
             )}
-        </div>
+        </>
     );
 }

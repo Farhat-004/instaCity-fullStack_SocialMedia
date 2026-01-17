@@ -1,6 +1,6 @@
-# PhotoBooth **Full-Stack** Project (MERN)
+# instaCity **Full-Stack** Project (MERN)
 
-PhotoBooth is a **React-based social media web application**.  
+instaCity is a **React-based social media web application**.  
 It converts existing static HTML templates (`login.html`, `register.html`, `profile.html`, etc.) into fully dynamic, functional pages with **JWT Authentication**, **REST API integration**, and **stateful UI interactions** — closely resembling a real-world social platform (Instagram).
 
 ---
@@ -9,7 +9,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ### Authentication
 
--   Users can **register** via `/register` and **log in** via `/login`.
+-   Users can **register** via `/register` and **login** via `/login`.
 -   Authentication is handled using **JWT (JSON Web Token)**.
 -   Unauthorized users are restricted in certain areas (e.g., limited post visibility).
 
@@ -77,23 +77,43 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ---
 
+## Chat Page
+
+-   Displays:
+
+    -   A list of all registered users in the application
+    -   A separate list of friends of the logged-in user
+    -   User cannot see their own account in the user list
+
+-   Friend Request System:
+
+    -   Logged-in users can send friend requests to any registered user
+    -   Incoming friend requests can be:
+    -   Accepted
+    -   Rejected
+    -   Friend request status is visible (Pending / Accepted)
+    -   Messaging is disabled until the friend request is accepted
+
+-   Messaging System
+
+    -   Once a friend request is accepted, a private chat room is created
+    -   Only friends can message each other
+    -   Messages are exchanged in real time inside the chat room
+    -   Each pair of friends has a unique chat room
+
+### Access Control
+
+-   Only authenticated users can access the chat page
+-   Non-friends are not allowed to send messages
+
+---
+
 ### Create Post Page
 
 -   Accessible via the **Create** button in the sidebar.
 -   Users can upload an image and write a caption.
 -   Both image and caption are **required fields**.
 -   Includes proper **validation and error handling** for all inputs.
-
----
-
-### Notification Page
-
--   Fetches notifications from the API (via GET requests).
--   Displays notifications for:
-    -   Likes
-    -   Comments
--   Clicking a notification navigates to the **corresponding Post Details page**.
--   No real-time updates — notifications are fetched on demand.
 
 ---
 
@@ -114,6 +134,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 -   **JWT-based Authentication** for login and registration.
 -   **REST API Integration** for all CRUD operations.
+-   **Chat system** to chat with friends.
 -   **Pagination + Infinite Scroll** for smooth performance.
 -   **Post Like, Comment, Share** system.
 -   **Conditional Rendering** based on authentication state.
@@ -138,6 +159,7 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 | ------------------------------- | --------------------------------------------------- |
 | **Frontend Framework**          | React                                               |
 | **Backend Framework**           | Express                                             |
+| **Chat System**                 | socket.io                                           |
 | **Routing**                     | React Router                                        |
 | **Authentication**              | JWT (JSON Web Token)                                |
 | **API Calls**                   | Axios                                               |
@@ -170,12 +192,13 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 | -------------------- | ------------------------ |
 | `/login`             | User login page          |
 | `/register`          | User registration page   |
+| `/chats`             | chat page                |
+| `/chat-room/:roomId` | chat room page           |
 | `/`                  | Home page (posts feed)   |
 | `/posts/:id`         | Single post details page |
 | `/profile/:username` | User profile page        |
 | `/edit-profile`      | Edit user profile        |
 | `/create`            | Create new post          |
-| `/notifications`     | User notifications       |
 
 ---
 
@@ -207,5 +230,5 @@ It converts existing static HTML templates (`login.html`, `register.html`, `prof
 
 ## Note
 
-This project is created for **educational purposes** as part of a frontend assignment. Later it was updated to Full-Stack project by developing a new backend with Express and MongoDB.
+This project is created for **educational purposes** as part of a frontend assignment names PhotoBooth. Later it was updated to Full-Stack project by developing a new backend with Express and MongoDB and named instaCity.
 All API routes and HTML templates are created by own following another backend.
