@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import SingleMessage from "../components/chat/message";
+import SingleMessage from "../components/chat/message.jsx";
 import { io } from "socket.io-client";
 import { useParams } from "react-router";
 import useAuth from "../hooks/useAuth";
@@ -20,7 +20,7 @@ export default function ChatRoomPage() {
     const getReceiver = async () => {
         try {
             const receiverInfo = await axios.get(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/users/${receiverId}`
+                `${import.meta.env.VITE_SERVER_BASE_URL}/users/${receiverId}`,
             );
             if (receiverInfo.status == 200) setReceiver(receiverInfo.data);
         } catch (error) {
@@ -76,17 +76,16 @@ export default function ChatRoomPage() {
         <div className="h-[80vh] w-full bg-gray-100 flex flex-col">
             {/* Header */}
             <div className="bg-white border-b px-4 py-3 flex items-center gap-3">
-                {receiver?.avatar ? (
+                {receiver?.avatar ?
                     <img
                         src={receiver?.avatar}
                         alt="avatar"
                         className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold"
                     />
-                ) : (
-                    <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                :   <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
                         {receiver?.name.charAt(0)}
                     </div>
-                )}
+                }
                 <div>
                     <p className="font-medium text-gray-800">
                         {receiver?.name}
