@@ -25,7 +25,7 @@ export default function PostsList() {
             const res = await axios.get(
                 `${
                     import.meta.env.VITE_SERVER_BASE_URL
-                }/posts/?page=${page}&limit=${limit}`
+                }/posts/?page=${page}&limit=${limit}`,
             );
 
             if (res.status === 200) {
@@ -45,7 +45,6 @@ export default function PostsList() {
             }
         } catch (err) {
             console.error("Post fetch failed:", err.message);
-            toast.error("Failed to load posts.");
         } finally {
             setLoading(false);
         }
@@ -91,7 +90,7 @@ export default function PostsList() {
 
             {hasMore && (
                 <div ref={loaderRef} className="text-center py-4 text-gray-500">
-                    Loading more posts...
+                    Loading posts...
                 </div>
             )}
 

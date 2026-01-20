@@ -3,7 +3,7 @@ import Notification from "../pages/Notification";
 import ProfilePage from "../pages/ProfilePage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import RegistrationPage from "../pages/RegistrationPage";
+import RegistrationPage from "../pages/RegistrationPage.jsx";
 import Logout from "../components/Logout";
 import App from "../App";
 import EditProfilePage from "../pages/EditProfilePage";
@@ -69,8 +69,8 @@ export const Router = createBrowserRouter([
         element: <RegistrationPage />,
     },
 
-    // {
-    //     path: "*",
-    //     element: <Error />,
-    // },
+    {
+        path: "*",
+        element: <Error />,
+    },
 ]);
