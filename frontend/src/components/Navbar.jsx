@@ -1,11 +1,9 @@
 import { Link, Navigate, useNavigate } from "react-router";
 import Logo from "../assets/logo-2.svg";
 import useAuth from "../hooks/useAuth.jsx";
-// import useAvatar from "../hooks/useAvatar.jsx";
 export default function Navbar() {
     const { auth } = useAuth();
     const user = auth.user;
-    // const { avatarURL } = useAvatar(user?.avatar);
     const navigate = useNavigate();
     return (
         <aside className="hidden floating-navbar bg-white  border px-6 py-2 md:flex flex-col">
@@ -41,75 +39,55 @@ export default function Navbar() {
                     </Link>
                 </li>
 
-                {/* <li>
-                    <Link
-                        to="./notification"
-                        className="flex flex-row items-center gap-2"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 stroke-zinc-800"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                {user?.name && (
+                    <li>
+                        <Link
+                            to="./chats"
+                            className="flex flex-row items-center gap-2"
                         >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                            />
-                        </svg>
-                        <span className="text-xs">Notifications</span>
-                    </Link>
-                </li> */}
-                <li>
-                    <Link
-                        to="./chats"
-                        className="flex flex-row items-center gap-2"
-                    >
-                        <svg
-                            viewBox="0 0 24 24"
-                            className="h-6 w-6 "
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            ></g>
-                            <g id="SVGRepo_iconCarrier">
-                                {" "}
-                                <g clip-path="url(#clip0_15_90)">
+                            <svg
+                                viewBox="0 0 24 24"
+                                className="h-6 w-6 "
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
                                     {" "}
-                                    <rect
-                                        width="24"
-                                        height="24"
-                                        fill="white"
-                                    ></rect>{" "}
-                                    <path
-                                        d="M20 12C20 16.4183 16.4183 20 12 20C10.5937 20 9.27223 19.6372 8.12398 19C7.53267 18.6719 4.48731 20.4615 3.99998 20C3.44096 19.4706 5.4583 16.6708 5.07024 16C4.38956 14.8233 3.99999 13.4571 3.99999 12C3.99999 7.58172 7.58171 4 12 4C16.4183 4 20 7.58172 20 12Z"
-                                        stroke="#000000"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_15_90">
+                                    <g clip-path="url(#clip0_15_90)">
+                                        {" "}
                                         <rect
                                             width="24"
                                             height="24"
                                             fill="white"
-                                        ></rect>
-                                    </clipPath>
-                                </defs>
-                            </g>
-                        </svg>
+                                        ></rect>{" "}
+                                        <path
+                                            d="M20 12C20 16.4183 16.4183 20 12 20C10.5937 20 9.27223 19.6372 8.12398 19C7.53267 18.6719 4.48731 20.4615 3.99998 20C3.44096 19.4706 5.4583 16.6708 5.07024 16C4.38956 14.8233 3.99999 13.4571 3.99999 12C3.99999 7.58172 7.58171 4 12 4C16.4183 4 20 7.58172 20 12Z"
+                                            stroke="#000000"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_15_90">
+                                            <rect
+                                                width="24"
+                                                height="24"
+                                                fill="white"
+                                            ></rect>
+                                        </clipPath>
+                                    </defs>
+                                </g>
+                            </svg>
 
-                        <span className="text-xs">Chats</span>
-                    </Link>
-                </li>
+                            <span className="text-xs">Chats</span>
+                        </Link>
+                    </li>
+                )}
                 <li>
                     <Link
                         to="/create-post"
@@ -133,29 +111,31 @@ export default function Navbar() {
                     </Link>
                 </li>
 
-                <li>
-                    <Link
-                        to={`/profile-page/${user?._id}`}
-                        className="flex flex-row items-center gap-2"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-user-icon lucide-user"
+                {user?.name && (
+                    <li>
+                        <Link
+                            to={`/profile-page/${user?._id}`}
+                            className="flex flex-row items-center gap-2"
                         >
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <span className="text-xs">Profile</span>
-                    </Link>
-                </li>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-user-icon lucide-user"
+                            >
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span className="text-xs">Profile</span>
+                        </Link>
+                    </li>
+                )}
             </ul>
 
             {auth?.user?._id && (
@@ -163,17 +143,16 @@ export default function Navbar() {
                     <Link to={`/profile-page/${user?._id}`}>
                         <div className="flex items-center">
                             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300">
-                                {user?.avatar ? (
+                                {user?.avatar ?
                                     <img
                                         src={user?.avatar}
                                         alt="User avatar"
                                         className="w-full h-full object-cover"
                                     />
-                                ) : (
-                                    <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                                :   <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
                                         {user?.name.charAt(0)}
                                     </div>
-                                )}
+                                }
                             </div>
                             <div className="ml-2">
                                 <span className="font-semibold text-sm">

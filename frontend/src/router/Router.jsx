@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router";
-import Notification from "../pages/Notification";
 import ProfilePage from "../pages/ProfilePage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -12,6 +11,7 @@ import CreatePost from "../pages/CreatePost";
 import EditPost from "../pages/EditPost";
 import ChatPage from "../pages/chatpage";
 import ChatRoomPage from "../pages/chatRoom";
+import ErrorPage from "../pages/ErrorPage.jsx";
 export const Router = createBrowserRouter([
     {
         element: <App />,
@@ -20,10 +20,7 @@ export const Router = createBrowserRouter([
                 path: "/profile-page/:userId",
                 element: <ProfilePage />,
             },
-            // {
-            //     path: "/notification",
-            //     element: <Notification />,
-            // },
+
             {
                 path: "/",
                 element: <HomePage />,
@@ -71,6 +68,6 @@ export const Router = createBrowserRouter([
 
     {
         path: "*",
-        element: <Error />,
+        element: <ErrorPage />,
     },
 ]);

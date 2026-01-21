@@ -15,11 +15,10 @@ export default function RegistrationPage() {
     const navigate = useNavigate();
 
     const submitLogin = async (formData) => {
-        // if(formData.pass) ;
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/auth/signup`,
-                formData
+                formData,
             );
             if (response.status === 201) {
                 toast.success("Registered in successfully", {
@@ -56,8 +55,6 @@ export default function RegistrationPage() {
     return (
         <div className="min-h-screen flex flex-col justify-center py-8 sm:px-6 lg:px-8">
             <div className="signup-container">
-                
-
                 <div className="bg-white p-6 border border-gray-300 mb-3">
                     <h2 className="text-center font-semibold text-gray-500 text-lg mb-4">
                         Sign up to see photos and videos from your friends.

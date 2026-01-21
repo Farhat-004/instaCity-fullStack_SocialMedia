@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { Bounce, toast } from "react-toastify";
 export default function LoginPage() {
@@ -128,12 +128,12 @@ export default function LoginPage() {
                 <div className="bg-white p-6 border border-gray-300 text-center ">
                     <p className="text-sm">
                         Don't have an account?{" "}
-                        <a
-                            href="/register"
+                        <Link
+                            to="/register"
                             className="text-blue-500 font-semibold"
                         >
                             Sign up
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>

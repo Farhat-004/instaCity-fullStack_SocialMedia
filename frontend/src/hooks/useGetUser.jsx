@@ -13,7 +13,7 @@ export default function useGetUser(id) {
 
         try {
             const response = await axios.get(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/posts/user/${id}`
+                `${import.meta.env.VITE_SERVER_BASE_URL}/posts/user/${id}`,
             );
             if (response?.status === 200) {
                 let { user, posts } = response.data; //postCount
@@ -22,17 +22,18 @@ export default function useGetUser(id) {
                 setPostCount(posts.length);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
+            console.error(error?.response?.data?.message);
+            // toast.error(error?.response?.data?.message, {
+            //     position: "top-center",
+            //     autoClose: 3000,
+            //     hideProgressBar: false,
+            //     closeOnClick: false,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "light",
+            //     transition: Bounce,
+            // });
         } finally {
             setLoading(false);
         }

@@ -17,7 +17,7 @@ export default function ProfilePage() {
     }, [user, params.userId]);
     return (
         <div className="main-container">
-            {auth?.user?._id ? (
+            {auth?.user?._id ?
                 <div className="profile-container">
                     {loading && (
                         <h1 className="text-5xl ">
@@ -28,12 +28,7 @@ export default function ProfilePage() {
                         <div className="flex justify-items-end md:justify-start md:w-1/3 mb-6 md:mb-0 relative">
                             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border border-gray-300 mx-auto">
                                 <img
-                                    src={
-                                        // `${import.meta.env.VITE_SERVER_URL}/${
-                                        //     userData?.avatar
-                                        // }`
-                                        userData?.avatar
-                                    }
+                                    src={userData?.avatar}
                                     alt="Profile picture"
                                     className="w-full h-full object-cover"
                                 />
@@ -96,22 +91,20 @@ export default function ProfilePage() {
                     </div>
 
                     <section>
-                        {postsCount ? (
+                        {postsCount ?
                             <>
                                 <h3 className="font-semibold text-lg mb-4">
                                     Posts
                                 </h3>
                                 <MorePosts userId={params?.userId} />
                             </>
-                        ) : (
-                            <p className="font-semibold text-lg mb-4">
+                        :   <p className="font-semibold text-lg mb-4">
                                 No Posts
                             </p>
-                        )}
+                        }
                     </section>
                 </div>
-            ) : (
-                <div className=" m-40">
+            :   <div className=" m-40">
                     <h1 className="text-3xl">
                         Login to see your profile details
                     </h1>
@@ -119,7 +112,7 @@ export default function ProfilePage() {
                         Click to login
                     </Link>
                 </div>
-            )}
+            }
         </div>
     );
 }
